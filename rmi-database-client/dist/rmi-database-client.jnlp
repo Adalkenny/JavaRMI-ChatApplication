@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="rmi-database-client.jnlp">
+  <information>
+    <title>rmi-database-client</title>
+    <vendor>linuxkenny</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="lib/rmi-database-api.jar" size="5730" download="eager" />
+    <jar href="rmi-database-client.jar" size="7941" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="800" height="600" main-class="com.dt.project.javafx.rmi.client.Main"  name="rmi-database-client" />
+  <update check="always"/>
+</jnlp>

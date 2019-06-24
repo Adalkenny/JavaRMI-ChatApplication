@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="rmi-database-sever.jnlp">
+  <information>
+    <title>rmi-database-sever</title>
+    <vendor>linuxkenny</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="lib/mysql-connector-java-8.0.15.jar" size="2134893" download="eager" />
+    <jar href="lib/rmi-database-api.jar" size="5730" download="eager" />
+    <jar href="rmi-database-sever.jar" size="6491" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="800" height="600" main-class="com.dt.project.javafx.rmi.server.Main"  name="rmi-database-sever" />
+  <update check="always"/>
+</jnlp>
