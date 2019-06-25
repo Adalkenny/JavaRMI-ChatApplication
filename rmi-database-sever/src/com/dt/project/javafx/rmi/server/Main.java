@@ -7,12 +7,9 @@ package com.dt.project.javafx.rmi.server;
 
 import com.dt.project.javafx.rmi.server.service.PersonServiceImpl;
 import com.dt.project.javafx.rmi.server.utilities.DatabaseConnection;
-import com.dt.projet.javafx.rmi.api.service.PersonService;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.stage.Stage;
 
 /**
@@ -25,15 +22,19 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+      
+        
         DatabaseConnection.getConnection();
         
         Registry registry=LocateRegistry.createRegistry(6789);
+         
         PersonServiceImpl personServiceImpl = new PersonServiceImpl();
-        PersonService personService = (PersonService) UnicastRemoteObject.exportObject(personServiceImpl, 0);
         
-        registry.rebind("service", personService);
+        //PersonService personService = (PersonService) UnicastRemoteObject.exportObject(personServiceImpl, 0);
+        registry.rebind("service", personServiceImpl);
+       
         
-        System.out.println("Server is running... ");
+        System.out.println("Server is running...");
       
     }
     

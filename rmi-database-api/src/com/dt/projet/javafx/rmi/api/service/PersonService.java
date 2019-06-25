@@ -22,6 +22,9 @@ public interface PersonService extends Remote {
     void deletePerson(Long id) throws RemoteException;
     
     Person getPersonById(Long id) throws RemoteException;
+    
+    Person getPersonByName(String firstName) throws RemoteException;
+    
     List<Person> getAllPerson() throws RemoteException; 
     
 }

@@ -1,0 +1,45 @@
+<html><head>
+  <SCRIPT src="http://java.com/js/dtjava.js"></SCRIPT>
+<script>
+    function launchApplication(jnlpfile) {
+        dtjava.launch(            {
+                url : 'rmi-database-sever.jnlp',
+                jnlp_content : 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPGpubHAgc3BlYz0iMS4wIiB4bWxuczpqZng9Imh0dHA6Ly9qYXZhZnguY29tIiBocmVmPSJybWktZGF0YWJhc2Utc2V2ZXIuam5scCI+CiAgPGluZm9ybWF0aW9uPgogICAgPHRpdGxlPnJtaS1kYXRhYmFzZS1zZXZlcjwvdGl0bGU+CiAgICA8dmVuZG9yPmxpbnV4a2Vubnk8L3ZlbmRvcj4KICAgIDxkZXNjcmlwdGlvbj5udWxsPC9kZXNjcmlwdGlvbj4KICAgIDxvZmZsaW5lLWFsbG93ZWQvPgogIDwvaW5mb3JtYXRpb24+CiAgPHJlc291cmNlcz4KICAgIDxqMnNlIHZlcnNpb249IjEuNisiIGhyZWY9Imh0dHA6Ly9qYXZhLnN1bi5jb20vcHJvZHVjdHMvYXV0b2RsL2oyc2UiLz4KICAgIDxqYXIgaHJlZj0ibGliL215c3FsLWNvbm5lY3Rvci1qYXZhLTguMC4xNS5qYXIiIHNpemU9IjIxMzQ4OTMiIGRvd25sb2FkPSJlYWdlciIgLz4KICAgIDxqYXIgaHJlZj0ibGliL3JtaS1kYXRhYmFzZS1hcGkuamFyIiBzaXplPSI1ODMzIiBkb3dubG9hZD0iZWFnZXIiIC8+CiAgICA8amFyIGhyZWY9InJtaS1kYXRhYmFzZS1zZXZlci5qYXIiIHNpemU9IjY4ODUiIGRvd25sb2FkPSJlYWdlciIgLz4KICA8L3Jlc291cmNlcz4KICA8amZ4OmphdmFmeC1kZXNjICB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgbWFpbi1jbGFzcz0iY29tLmR0LnByb2plY3QuamF2YWZ4LnJtaS5zZXJ2ZXIuTWFpbiIgIG5hbWU9InJtaS1kYXRhYmFzZS1zZXZlciIgLz4KICA8dXBkYXRlIGNoZWNrPSJhbHdheXMiLz4KPC9qbmxwPgo='
+            },
+            {
+                javafx : '8.0+'
+            },
+            {}
+        );
+        return false;
+    }
+</script>
+
+<script>
+    function javafxEmbedcom.dt.project.javafx.rmi.server() {
+        dtjava.embed(
+            {
+                id : 'com.dt.project.javafx.rmi.server',
+                url : 'rmi-database-sever.jnlp',
+                placeholder : 'javafx-app-placeholder',
+                width : '800',
+                height : '600',
+                jnlp_content : 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPGpubHAgc3BlYz0iMS4wIiB4bWxuczpqZng9Imh0dHA6Ly9qYXZhZnguY29tIiBocmVmPSJybWktZGF0YWJhc2Utc2V2ZXIuam5scCI+CiAgPGluZm9ybWF0aW9uPgogICAgPHRpdGxlPnJtaS1kYXRhYmFzZS1zZXZlcjwvdGl0bGU+CiAgICA8dmVuZG9yPmxpbnV4a2Vubnk8L3ZlbmRvcj4KICAgIDxkZXNjcmlwdGlvbj5udWxsPC9kZXNjcmlwdGlvbj4KICAgIDxvZmZsaW5lLWFsbG93ZWQvPgogIDwvaW5mb3JtYXRpb24+CiAgPHJlc291cmNlcz4KICAgIDxqMnNlIHZlcnNpb249IjEuNisiIGhyZWY9Imh0dHA6Ly9qYXZhLnN1bi5jb20vcHJvZHVjdHMvYXV0b2RsL2oyc2UiLz4KICAgIDxqYXIgaHJlZj0ibGliL215c3FsLWNvbm5lY3Rvci1qYXZhLTguMC4xNS5qYXIiIHNpemU9IjIxMzQ4OTMiIGRvd25sb2FkPSJlYWdlciIgLz4KICAgIDxqYXIgaHJlZj0ibGliL3JtaS1kYXRhYmFzZS1hcGkuamFyIiBzaXplPSI1ODMzIiBkb3dubG9hZD0iZWFnZXIiIC8+CiAgICA8amFyIGhyZWY9InJtaS1kYXRhYmFzZS1zZXZlci5qYXIiIHNpemU9IjY4ODUiIGRvd25sb2FkPSJlYWdlciIgLz4KICA8L3Jlc291cmNlcz4KICA8amZ4OmphdmFmeC1kZXNjICB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgbWFpbi1jbGFzcz0iY29tLmR0LnByb2plY3QuamF2YWZ4LnJtaS5zZXJ2ZXIuTWFpbiIgIG5hbWU9InJtaS1kYXRhYmFzZS1zZXZlciIgLz4KICA8dXBkYXRlIGNoZWNrPSJhbHdheXMiLz4KPC9qbmxwPgo='
+            },
+            {
+                javafx : '8.0+'
+            },
+            {}
+        );
+    }
+    <!-- Embed FX application into web page once page is loaded -->
+    dtjava.addOnloadCallback(javafxEmbedcom.dt.project.javafx.rmi.server);
+</script>
+
+</head><body>
+<h2>Test page for <b>rmi-database-sever</b></h2>
+  <b>Webstart:</b> <a href='rmi-database-sever.jnlp' onclick="return launchApplication('rmi-database-sever.jnlp');">click to launch this app as webstart</a><br><hr><br>
+
+  <!-- Applet will be inserted here -->
+  <div id='javafx-app-placeholder'></div>
+</body></html>

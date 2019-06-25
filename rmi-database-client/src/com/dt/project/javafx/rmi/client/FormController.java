@@ -30,7 +30,8 @@ import javafx.stage.Modality;
 /**
  * FXML Controller class
  *
- * @author linuxkenny
+ * @author linuxkenny Leader@off@free@focus
+ *
  */
 public class FormController implements Initializable {
 
@@ -71,14 +72,22 @@ public class FormController implements Initializable {
         colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         colBirthdate.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
-        
+
         TableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Person>() {
             @Override
             public void changed(ObservableValue<? extends Person> observable, Person oldperson, Person newperson) {
-                txtId.setText(Long.toString(newperson.getId()));
-                txtFirstName.setText(newperson.getFirstName());            
-                txtLastName.setText(newperson.getLastName());
-                dptBristDate.setValue(newperson.getBirthDate());
+
+                if (newperson != null) {
+
+                    txtId.setText(Long.toString(newperson.getId()));
+                    txtFirstName.setText(newperson.getFirstName());
+                    txtLastName.setText(newperson.getLastName());
+                    dptBristDate.setValue(newperson.getBirthDate());
+
+                } else {
+                    
+                    clearField();
+                }
             }
         });
 
@@ -111,46 +120,72 @@ public class FormController implements Initializable {
 
     @FXML
     private void onUpdate(ActionEvent event) {
-        
-        int index= TableView.getSelectionModel().getSelectedIndex();
-        
-        if(index == -1){
-            
+
+        int index = TableView.getSelectionModel().getSelectedIndex();
+
+        if (index == -1) {
+
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.setTitle("Warning Update");
             alert.setHeaderText("Nenhuma pessoa foi selecionada");
             alert.setContentText("Por favor selecione uma pessoa");
             alert.showAndWait();
-           
+
         }
-        if(isFieldValid()){
+        if (isFieldValid()) {
             try {
                 Person person = new Person();
                 person.setId(Long.valueOf(txtId.getText()));
                 person.setFirstName(txtFirstName.getText());
                 person.setLastName(txtLastName.getText());
                 person.setBirthDate(dptBristDate.getValue());
-                
+
                 personService.updatePerson(person);
-                
+
                 TableView.getItems().set(index, person);
                 clearField();
-                
+
             } catch (RemoteException ex) {
-                
+
                 ex.printStackTrace();
             }
-            
+
         }
     }
 
     @FXML
     private void onDelete(ActionEvent event) {
+
+        try {
+            Person person = TableView.getSelectionModel().getSelectedItem();
+            if (person == null) {
+                return;
+            }
+
+            personService.deletePerson(person.getId());
+
+            TableView.getItems().remove(person);
+
+            clearField();
+
+        } catch (RemoteException ex) {
+
+            ex.printStackTrace();
+        }
     }
 
     @FXML
     private void onRefresh(ActionEvent event) {
+
+        try {
+            TableView.getItems().setAll(personService.getAllPerson());
+        } catch (RemoteException ex) {
+
+            ex.printStackTrace();
+        }
+        clearField();
+
     }
 
     public void setMain(Main main) {

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1300.0" styleClass="rooton" stylesheets="@dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dt.project.javafx.rmi.client.LoginFormController">
+   <children>
+      <AnchorPane layoutX="450.0" layoutY="200.0" prefHeight="400.0" prefWidth="400.0" styleClass="root" stylesheets="@dark-theme.css">
+         <children>
+            <JFXTextField fx:id="txtusername" focusColor="#9a9740" layoutX="87.0" layoutY="143.0" prefHeight="30.0" prefWidth="250.0" promptText="Nome de utilizador" styleClass="text-field" stylesheets="@dark-theme.css" unFocusColor="#d3d2b8" />
+            <JFXPasswordField fx:id="txtpwd" focusColor="#a2a840" layoutX="89.0" layoutY="205.0" prefHeight="30.0" prefWidth="250.0" promptText="Palavra-passe" styleClass="text-field" stylesheets="@dark-theme.css" unFocusColor="#bfbfb2" />
+            <FontAwesomeIconView glyphName="LOCK" layoutX="181.0" layoutY="65.0" size="70" styleClass="ghy-icon" />
+            <FontAwesomeIconView glyphName="USER" layoutX="63.0" layoutY="165.0" size="20" styleClass="ghy-icon" />
+            <FontAwesomeIconView glyphName="KEY" layoutX="61.0" layoutY="227.0" size="20" styleClass="ghy-icon" />
+            <JFXButton fx:id="btnEntrar" alignment="CENTER" layoutX="117.0" layoutY="313.0" onAction="#btnEntrarAction" prefHeight="37.0" prefWidth="179.0" styleClass="login-btn" stylesheets="@dark-theme.css" text="Entrar" textFill="#ffffffc9">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <Label alignment="CENTER" layoutX="100.0" layoutY="72.0" styleClass="copy-right" stylesheets="@dark-theme.css" text="WELCOME - ChatApp" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btncriarConta" layoutX="129.0" layoutY="257.0" onAction="#btnConta" prefHeight="26.0" prefWidth="151.0" styleClass="btn-new" stylesheets="@dark-theme.css" text="Criar uma conta?" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <Label layoutX="134.0" layoutY="681.0" prefHeight="26.0" prefWidth="1018.0" styleClass="copy-right" stylesheets="@dark-theme.css" text=" 2019 - Free@Focus by Adalberto &amp; Kelly. Todos os direitos reservados - All rights reserved." textFill="#b9aa2c">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

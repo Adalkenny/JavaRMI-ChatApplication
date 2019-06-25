@@ -8,8 +8,12 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="lib/rmi-database-api.jar" size="5730" download="eager" />
-    <jar href="rmi-database-client.jar" size="7941" download="eager" />
+    <jar href="lib/controlsfx-8.40.11.jar" size="985420" download="eager" />
+    <jar href="lib/fontawesomefx-8.9.jar" size="571068" download="eager" />
+    <jar href="lib/fontawesomefx-commons-8.15.jar" size="20957" download="eager" />
+    <jar href="lib/jfoenix-8.0.1.jar" size="2405715" download="eager" />
+    <jar href="lib/rmi-database-api.jar" size="5833" download="eager" />
+    <jar href="rmi-database-client.jar" size="5683129" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="com.dt.project.javafx.rmi.client.Main"  name="rmi-database-client" />
   <update check="always"/>

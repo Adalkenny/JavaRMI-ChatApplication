@@ -5,6 +5,7 @@ import com.dt.project.javafx.rmi.server.utilities.DatabaseConnection;
 import com.dt.projet.javafx.rmi.api.entity.Person;
 import com.dt.projet.javafx.rmi.api.service.PersonService;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,8 +19,11 @@ import java.util.List;
  *
  * @author linuxkenny
  */
-public class PersonServiceImpl implements PersonService {
+public class PersonServiceImpl extends UnicastRemoteObject implements PersonService {
 
+    public PersonServiceImpl() throws RemoteException {
+    }
+    
     @Override
     public Person insertPerson(Person person) throws RemoteException {
 
@@ -194,5 +198,48 @@ public class PersonServiceImpl implements PersonService {
         
         
     }
+
+    @Override
+    public Person getPersonByName(String firstName) throws RemoteException {
+       
+        PreparedStatement stmt = null;
+        String sql = "select * from person where first_name = ?";
+
+        try {
+            stmt = DatabaseConnection.getConnection().prepareStatement(sql);
+            stmt.setString(1, firstName);
+            
+            ResultSet result = stmt.executeQuery();
+            Person person = null;
+            if(result.next()){
+                person = new Person();
+                person.setId(result.getLong("id"));
+                person.setFirstName(result.getString("first_name"));
+                person.setLastName(result.getString("last_name"));
+                person.setBirthDate(LocalDate.parse(result.getDate("birth_date").toString()));
+            }
+            result.close();
+            return person;
+            
+        } catch (SQLException ex) {
+            
+            ex.printStackTrace();
+            return null;
+            
+        }finally{
+            if(stmt != null){
+                try {
+                    stmt.close();
+                    
+                } catch (SQLException ex) {
+                 
+                    ex.printStackTrace();
+                }
+            }
+        }
+
+        
+    }
+    
 
 }

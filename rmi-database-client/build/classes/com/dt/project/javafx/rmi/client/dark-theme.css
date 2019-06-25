@@ -1,0 +1,54 @@
+
+/* 
+    Created on : 25/jun/2019, 1:26:07
+    Author     : linuxkenny
+*/
+
+*{
+    -fx-primary: #2A2E37;
+    -fx-secondary: #FFFF8D;
+    -fx-primarytext: #B2B2B2;
+    
+}
+
+.root{
+    -fx-background-color: -fx-primary;
+}
+
+.ghy-icon{
+    -fx-fill:  -fx-primarytext;
+}
+
+.btn{
+    -fx-text-fill: -fx-primary;
+}
+
+.login-btn{
+    -fx-border-color: -fx-secondary;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+}
+
+.rooton{
+    
+    -fx-background-image: url(../imagem/material-design-geometriia-abstraktsiia-black-orange-linii.jpg);
+}
+
+.text-field{
+    
+    -fx-text-fill: -fx-primarytext;
+    -fx-font-size: 13pt;
+    -jfx-focus-color: -fx-secondary;
+}
+.copy-right{
+    -fx-text-fill:-fx-primarytext;
+    -fx-font-size: 14pt;
+    -fx-background-color:  transparent;
+    -fx-text-alignment: center;
+}
+.btn-new{
+    -fx-text-fill: -fx-primarytext;
+    -fx-background-color:  -fx-primary;
+    -fx-font-size: 10pt;
+    
+}

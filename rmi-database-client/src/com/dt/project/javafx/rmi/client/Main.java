@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.dt.project.javafx.rmi.client;
 
 import com.dt.projet.javafx.rmi.api.service.PersonService;
@@ -17,6 +13,8 @@ import javafx.stage.Stage;
 /**
  *
  * @author linuxkenny
+ * Leader@off@free@focus
+ * 
  */
 public class Main extends Application {
     
@@ -24,15 +22,17 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        
+       
 
-       Registry registry = LocateRegistry.getRegistry("localhost", 6789);
+        Registry registry = LocateRegistry.getRegistry("10.74.34.81", 6789); 
         personService = (PersonService) registry.lookup("service");
        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("form.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("loginForm.fxml"));
         Parent root = loader.load();
         
-        FormController controller = loader.getController();
-        controller.setMain(this);
+        //FormController controller = loader.getController();
+        //controller.setMain(this);
         
         stage.setScene(new Scene(root));
         stage.setTitle("Database RMI");
