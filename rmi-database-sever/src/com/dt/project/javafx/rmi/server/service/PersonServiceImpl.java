@@ -1,4 +1,3 @@
-
 package com.dt.project.javafx.rmi.server.service;
 
 import com.dt.project.javafx.rmi.server.utilities.DatabaseConnection;
@@ -18,12 +17,13 @@ import java.util.List;
 /**
  *
  * @author linuxkenny
+ * 
  */
 public class PersonServiceImpl extends UnicastRemoteObject implements PersonService {
 
     public PersonServiceImpl() throws RemoteException {
     }
-    
+
     @Override
     public Person insertPerson(Person person) throws RemoteException {
 
@@ -38,12 +38,12 @@ public class PersonServiceImpl extends UnicastRemoteObject implements PersonServ
             statement.setDate(3, Date.valueOf(person.getBirthDate().toString()));
 
             statement.executeUpdate();
-           ResultSet result = statement.getGeneratedKeys();
-                if (result.next()) {
-                    person.setId(result.getLong(1));
+            ResultSet result = statement.getGeneratedKeys();
+            if (result.next()) {
+                person.setId(result.getLong(1));
 
             }
-                result.close();
+            result.close();
             return person;
 
         } catch (SQLException ex) {
@@ -72,7 +72,7 @@ public class PersonServiceImpl extends UnicastRemoteObject implements PersonServ
             statement.setString(1, person.getFirstName());
             statement.setString(2, person.getLastName());
             statement.setDate(3, Date.valueOf(person.getBirthDate().toString()));
-            statement.setLong(4, person.getId());             
+            statement.setLong(4, person.getId());
 
             statement.executeUpdate();
 
@@ -124,11 +124,11 @@ public class PersonServiceImpl extends UnicastRemoteObject implements PersonServ
 
         try {
             stmt = DatabaseConnection.getConnection().prepareStatement(sql);
-            stmt.setLong(1,id);
-            
+            stmt.setLong(1, id);
+
             ResultSet result = stmt.executeQuery();
             Person person = null;
-            if(result.next()){
+            if (result.next()) {
                 person = new Person();
                 person.setId(result.getLong("id"));
                 person.setFirstName(result.getString("first_name"));
@@ -137,17 +137,17 @@ public class PersonServiceImpl extends UnicastRemoteObject implements PersonServ
             }
             result.close();
             return person;
-            
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
-            
-        }finally{
-            if(stmt != null){
+
+        } finally {
+            if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                 
+
                     ex.printStackTrace();
                 }
             }
@@ -157,37 +157,128 @@ public class PersonServiceImpl extends UnicastRemoteObject implements PersonServ
 
     @Override
     public List<Person> getAllPerson() throws RemoteException {
-    
+
         Statement stmt = null;
-        String sql ="select * from person";
-        
+        String sql = "select * from person";
+
         try {
             stmt = DatabaseConnection.getConnection().createStatement();
             ResultSet result = stmt.executeQuery(sql);
             List<Person> list = new ArrayList<>();
-            
-            while(result.next()){
+
+            while (result.next()) {
+
+                Person person = new Person();
+                person.setId(result.getLong("id"));
+                person.setFirstName(result.getString("first_name"));
+                person.setLastName(result.getString("last_name"));
+                person.setBirthDate(LocalDate.parse(result.getDate("birth_date").toString()));
+
+                list.add(person);
+
+            }
+            result.close();
+            return list;
+
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+
+    }
+
+    @Override
+    public Person getPersonByName(Person person) throws RemoteException {
+
+        PreparedStatement stmt = null;
+        String sql = "select * from person where first_name =? and last_name=?";
+
+        try {
+            stmt = DatabaseConnection.getConnection().prepareStatement(sql);
+            stmt.setString(1, person.getFirstName());
+            stmt.setString(2, person.getLastName());
+
+            ResultSet result = stmt.executeQuery();
+
+            if (result.next()) {
+                //person = new Person();
+
+                person.setId(result.getLong("id"));
+                person.setFirstName(result.getString("first_name"));
+                person.setLastName(result.getString("last_name"));
+                person.setBirthDate(LocalDate.parse(result.getDate("birth_date").toString()));
+
+                result.close();
+                return person;
                 
+            } else {
+                result.close();
+                person = null;
+                return person;
+            }
+
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+
+                } catch (SQLException ex) {
+
+                    ex.printStackTrace();
+                }
+            }
+        }
+
+    }
+
+    @Override
+    public List<Person> getAllPersonOnlyName() throws RemoteException {
+        
+        Statement stmt = null;
+        String sql = "select * from person";
+
+        try {
+            stmt = DatabaseConnection.getConnection().createStatement();
+            ResultSet result = stmt.executeQuery(sql);
+            List<Person> list = new ArrayList<>();
+
+            while (result.next()) {
+
                 Person person = new Person();
                 person.setId(result.getLong("id"));
                 person.setFirstName(result.getString("first_name"));
                 person.setLastName(result.getString("last_name"));
                 person.setBirthDate(LocalDate.parse(result.getDate("birth_date").toString()));
                 
+
                 list.add(person);
-                
-                
+
             }
             result.close();
             return list;
-            
+
         } catch (SQLException ex) {
-        
+
             ex.printStackTrace();
             return null;
-            
-        }finally{
-            if(stmt != null){
+
+        } finally {
+            if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
@@ -195,51 +286,57 @@ public class PersonServiceImpl extends UnicastRemoteObject implements PersonServ
                 }
             }
         }
-        
         
     }
 
     @Override
-    public Person getPersonByName(String firstName) throws RemoteException {
-       
+    public Person getPersonFirstName(Person person) throws RemoteException {
+        
         PreparedStatement stmt = null;
-        String sql = "select * from person where first_name = ?";
+        String sql = "select * from person where first_name =?";
 
         try {
             stmt = DatabaseConnection.getConnection().prepareStatement(sql);
-            stmt.setString(1, firstName);
-            
+            stmt.setString(1, person.getFirstName());
+
             ResultSet result = stmt.executeQuery();
-            Person person = null;
-            if(result.next()){
-                person = new Person();
+
+            if (result.next()) {
+                //person = new Person();
+
                 person.setId(result.getLong("id"));
                 person.setFirstName(result.getString("first_name"));
                 person.setLastName(result.getString("last_name"));
                 person.setBirthDate(LocalDate.parse(result.getDate("birth_date").toString()));
+
+                result.close();
+                return person;
+                
+            } else {
+                
+                result.close();
+                return null;
             }
-            result.close();
-            return person;
-            
+
         } catch (SQLException ex) {
-            
+
             ex.printStackTrace();
             return null;
-            
-        }finally{
-            if(stmt != null){
+
+        } finally {
+            if (stmt != null) {
                 try {
                     stmt.close();
-                    
+
                 } catch (SQLException ex) {
-                 
+
                     ex.printStackTrace();
                 }
             }
         }
 
-        
     }
+    
     
 
 }

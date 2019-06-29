@@ -11,8 +11,6 @@ import java.net.URL;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -56,8 +54,6 @@ public class FormController implements Initializable {
     @FXML
     private Button btnInsert;
 
-    private Main main;
-
     private PersonService personService;
 
     /**
@@ -65,7 +61,9 @@ public class FormController implements Initializable {
      *
      * @param url
      * @param rb
+     * 
      */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         colId.setCellValueFactory(new PropertyValueFactory<Person, Long>("id"));
@@ -188,9 +186,9 @@ public class FormController implements Initializable {
 
     }
 
-    public void setMain(Main main) {
-        this.main = main;
-        this.personService = main.getPersonService();
+    public void setMain() {
+        
+        this.personService = Main.getPersonService();
 
         try {
             TableView.getItems().setAll(personService.getAllPerson());

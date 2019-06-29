@@ -1,11 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
-    
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="939.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dt.project.javafx.rmi.client.ChatFormController">
+   <children>
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="600.0" prefWidth="133.0" styleClass="root" stylesheets="@dark-theme.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <FontAwesomeIconView glyphName="BARS" layoutX="48.0" layoutY="48.0" size="40" styleClass="ghy-icon" />
+            <FontAwesomeIconView glyphName="SAFARI" layoutX="11.0" layoutY="97.0" size="20" styleClass="ghy-icon" />
+            <FontAwesomeIconView glyphName="COMMENTING_ALT" layoutX="11.0" layoutY="140.0" size="20" styleClass="ghy-icon" />
+            <FontAwesomeIconView glyphName="USER" layoutX="11.0" layoutY="183.0" size="20" styleClass="ghy-icon" />
+            <FontAwesomeIconView glyphName="TIMES_CIRCLE_ALT" layoutX="11.0" layoutY="229.0" size="20" styleClass="ghy-icon" />
+            <FontAwesomeIconView glyphName="POWER_OFF" layoutX="11.0" layoutY="348.0" size="20" styleClass="ghy-icon" />
+            <FontAwesomeIconView glyphName="COG" layoutX="11.0" layoutY="303.0" size="20" styleClass="ghy-icon" />
+            <JFXButton fx:id="btntimeline" layoutX="41.0" layoutY="77.0" onAction="#btnTimeLine" prefHeight="30.0" prefWidth="80.0" styleClass="btn-new" text="Timeline">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnsms" layoutX="38.0" layoutY="119.0" onAction="#btnSMS" prefHeight="30.0" styleClass="btn-new" text="Mensagens">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btndefinicao" layoutX="40.0" layoutY="281.0" onAction="#btnDefinicao" prefHeight="30.0" styleClass="btn-new" text="Definiçao">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnsair" layoutX="31.0" layoutY="325.0" onAction="#btnSair" prefHeight="30.0" prefWidth="80.0" styleClass="btn-new" text="Sair">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btneliminar" layoutX="41.0" layoutY="207.0" onAction="#btnDelete" prefHeight="30.0" styleClass="btn-new" text="Eliminar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btncontacto" layoutX="41.0" layoutY="162.0" onAction="#btnContact" prefHeight="30.0" styleClass="btn-new" text="Contactos">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Pane layoutX="133.0" prefHeight="50.0" prefWidth="250.0" styleClass="root" stylesheets="@dark-theme.css" AnchorPane.leftAnchor="133.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <FontAwesomeIconView fill="#cdcdcd" glyphName="GROUP" layoutX="8.0" layoutY="37.0" size="40" styleClass="btn-new" />
+            <Label layoutX="81.0" layoutY="10.0" prefHeight="30.0" prefWidth="90.0" styleClass="rtext-field" stylesheets="@dark-theme.css" text="Amigos" />
+         </children>
+      </Pane>
+      <JFXListView fx:id="listView" layoutX="133.0" layoutY="103.0" onMouseClicked="#btnlistviewselect" prefHeight="497.0" prefWidth="250.0" stylesheets="@dark-theme.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="103.0" />
+      <Pane layoutX="383.0" layoutY="1.0" prefHeight="600.0" prefWidth="555.0" styleClass="sms" stylesheets="@dark-theme.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXButton fx:id="btnsend" layoutX="428.0" layoutY="548.0" onAction="#btnSend" prefHeight="50.0" prefWidth="126.0" styleClass="confirmar-cancelar-btn" stylesheets="@dark-theme.css" text="Enviar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXTextField fx:id="txtsmsfield" layoutX="3.0" layoutY="548.0" onAction="#txtfieldEnviar" onKeyPressed="#btntxtmsmfield" prefHeight="50.0" prefWidth="427.0" promptText="  Digite sua mensagem" styleClass="send-fied" stylesheets="@dark-theme.css" unFocusColor="BLACK" />
+            <JFXListView fx:id="msmlistview" layoutY="52.0" prefHeight="487.0" prefWidth="556.0" style="-fx-background-color: transparent;" />
+            <JFXButton layoutX="-2.0" onAction="#btnReload" prefHeight="50.0" prefWidth="556.0" styleClass="confirmar-cancelar-btn" stylesheets="@dark-theme.css" text="Reload">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Label layoutX="133.0" layoutY="48.0" prefHeight="57.0" prefWidth="250.0" />
+      <JFXTextField fx:id="txtPesquisa" layoutX="134.0" layoutY="50.0" onAction="#btntxtpesquisar" onKeyTyped="#btnPesquisa" prefHeight="50.0" prefWidth="250.0" promptText=" Encontrar amigos" styleClass="send-fied" stylesheets="@dark-theme.css" />
+      <FontAwesomeIconView fill="#aeaaaa" glyphName="SEARCH" layoutX="352.0" layoutY="82.0" size="20" text="" />
+   </children>
 </AnchorPane>

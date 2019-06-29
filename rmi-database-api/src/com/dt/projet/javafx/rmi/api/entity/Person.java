@@ -25,7 +25,7 @@ public class Person implements Externalizable {
 
     private final LongProperty id = new SimpleLongProperty();
     private final StringProperty firstName = new SimpleStringProperty();
-     private final StringProperty lastName = new SimpleStringProperty();
+    private final StringProperty lastName = new SimpleStringProperty();
     private final ObjectProperty<LocalDate> birthDate = new SimpleObjectProperty<>();
 
     public LocalDate getBirthDate() {
@@ -99,6 +99,11 @@ public class Person implements Externalizable {
         setLastName((String) in.readObject());
         setBirthDate((LocalDate) in.readObject());        
         
+    }
+
+    @Override
+    public String toString() {
+        return ""+ getFirstName() + " " +getLastName();
     }
     
     

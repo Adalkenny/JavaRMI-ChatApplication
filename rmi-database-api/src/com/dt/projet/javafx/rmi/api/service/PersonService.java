@@ -17,14 +17,19 @@ import java.util.List;
 public interface PersonService extends Remote {
     
     Person insertPerson(Person person) throws RemoteException;
+    
     void updatePerson(Person person) throws RemoteException;
     
     void deletePerson(Long id) throws RemoteException;
     
     Person getPersonById(Long id) throws RemoteException;
     
-    Person getPersonByName(String firstName) throws RemoteException;
+    Person getPersonByName(Person person) throws RemoteException;
+    
+    Person getPersonFirstName(Person person)throws RemoteException;
     
     List<Person> getAllPerson() throws RemoteException; 
+    
+    List<Person> getAllPersonOnlyName() throws RemoteException;
     
 }

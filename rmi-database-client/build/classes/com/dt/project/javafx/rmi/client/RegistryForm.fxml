@@ -1,11 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
-    
+<AnchorPane id="AnchorPane" prefHeight="539.0" prefWidth="457.0" styleClass="pane" stylesheets="@dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dt.project.javafx.rmi.client.RegistryFormController">
+   <children>
+      <Label layoutX="7.0" layoutY="139.0" styleClass="rtext-field" stylesheets="@dark-theme.css" text="Nome de utilizador" />
+      <JFXTextField fx:id="txtusername" layoutX="200.0" layoutY="132.0" prefHeight="30.0" prefWidth="230.0" styleClass="rtxt-input" stylesheets="@dark-theme.css" AnchorPane.rightAnchor="27.0" />
+      <JFXDatePicker fx:id="dtpdatanascimento" defaultColor="#000706" editable="false" layoutX="210.0" layoutY="250.0" prefHeight="30.0" prefWidth="230.0" styleClass="rtxt-input" stylesheets="@dark-theme.css" AnchorPane.rightAnchor="20.0" />
+      <Label layoutX="7.0" layoutY="256.0" styleClass="rtext-field" stylesheets="@dark-theme.css" text="Data de nascimento" />
+      <JFXPasswordField fx:id="txtsenha" layoutX="179.0" layoutY="339.0" prefHeight="30.0" prefWidth="230.0" styleClass="rtxt-input" stylesheets="@dark-theme.css" AnchorPane.rightAnchor="27.0" />
+      <JFXPasswordField fx:id="txtconfirmarsenha" layoutX="177.0" layoutY="392.0" prefHeight="30.0" prefWidth="230.0" styleClass="rtxt-input" stylesheets="@dark-theme.css" AnchorPane.rightAnchor="27.0" />
+      <Label layoutX="7.0" layoutY="346.0" styleClass="rtext-field" stylesheets="@dark-theme.css" text="Senha" />
+      <Label layoutX="6.0" layoutY="405.0" styleClass="rtext-field" stylesheets="@dark-theme.css" text="Confirmar senha" />
+      <JFXButton alignment="CENTER" layoutX="82.0" layoutY="485.0" lineSpacing="20.0" onAction="#btnconfirmar" prefHeight="30.0" prefWidth="120.0" styleClass="confirmar-cancelar-btn" stylesheets="@dark-theme.css" text="Confirmar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton alignment="CENTER" layoutX="261.0" layoutY="485.0" lineSpacing="20.0" onAction="#btncancelar" prefHeight="30.0" prefWidth="120.0" styleClass="confirmar-cancelar-btn" stylesheets="@dark-theme.css" text="Cancelar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <FontAwesomeIconView glyphName="EDIT" layoutX="208.0" layoutY="51.0" size="60" styleClass="icon-registry" wrappingWidth="58.99999153614044" />
+      <Label layoutX="129.0" layoutY="57.0" prefHeight="33.0" prefWidth="230.0" text="CRIE UMA CONTA É GRATIS!" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>

@@ -10,6 +10,24 @@
     -fx-primarytext: #B2B2B2;
     
 }
+/*
+.list-view{
+    -fx-background-image: url(../imagem/imgregistry/autumn-wood-texture.jpg);
+}
+*/
+.send-fied{
+    
+     -fx-background-color: -fx-primary;
+     -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+     -fx-border-color: -fx-secondary;
+     -jfx-focus-color: -fx-secondary;
+     -fx-text-fill: #000;
+     
+}
+.sms{
+    /*-fx-background-image: url(../imagem/imgregistry/rain-coming-down-window.jpg);*/
+}
 
 .root{
     -fx-background-color: -fx-primary;
@@ -46,9 +64,43 @@
     -fx-background-color:  transparent;
     -fx-text-alignment: center;
 }
+
 .btn-new{
     -fx-text-fill: -fx-primarytext;
     -fx-background-color:  -fx-primary;
     -fx-font-size: 10pt;
     
+}
+/*
+******************************************* Registry form style sheet ************************************
+*/
+
+.pane{
+     -fx-border-radius: 10px;
+     -fx-background-radius: 20px;
+    -fx-background-image: url(../imagem/imgregistry/wooden-table-texture.jpg);
+   
+}
+.rtext-field{
+    -fx-text-fill: #ffffff;
+     -fx-font-size: 14pt;
+     -jfx-focus-color: -fx-secondary;
+    
+}
+.rtxt-input{
+     -fx-background-color: transparent;
+     -fx-text-fill: -fx-primary;
+     -jfx-focus-color: -fx-secondary;
+}
+
+.confirmar-cancelar-btn{
+   
+    -fx-border-radius: 20px;
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 20px;
+     -fx-border-color: -fx-secondary;
+}
+.icon-registry{
+    -fx-fill: #ffffff;
 }

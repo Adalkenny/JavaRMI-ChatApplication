@@ -14,18 +14,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
@@ -48,123 +45,185 @@ public class LoginFormController implements Initializable {
 
     private PersonService personService;
 
+    Person pessoa = new Person();
+
+    public static Person pessoalogado;
+
+   
+    public static Stage stagio;
+
+    String firstName, lastName;
+
     /**
      * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
+     * 
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-       
-            
-            btnEntrar.setOnKeyPressed((KeyEvent k) -> {
+        btnEntrar.setOnKeyPressed((KeyEvent k) -> {
+
             if (k.getCode() == KeyCode.ENTER) {
-                login();
+
+                if (!isFieldValid()) {
+
+                } else {
+
+                    login();
+                }
+
             }
         });
 
         txtusername.setOnKeyPressed(e -> {
+
             if (e.getCode() == KeyCode.ENTER) {
-                login();
+                if (!isFieldValid()) {
+
+                } else {
+
+                    login();
+                }
             }
         });
 
         txtpwd.setOnKeyPressed(e -> {
+
             if (e.getCode() == KeyCode.ENTER) {
-                login();
+                if (!isFieldValid()) {
+
+                } else {
+
+                    login();
+                }
             }
         });
 
-        
-        
     }
 
     @FXML
     private void btnEntrarAction(ActionEvent event) {
 
+        if (isFieldValid()) {
+
+            login();
+
+        }
+
     }
 
     @FXML
     private void btnConta(ActionEvent event) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("RegistryForm.fxml"));
+            Parent root = loader.load();
+
+            Stage st = new Stage();
+            st.setScene(new Scene(root));
+            stagio = st;
+            stagio.setResizable(false);
+            stagio.show();
+            stagio.setAlwaysOnTop(true);
+
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+
     }
 
     private void login() {
 
-        Person pessoa = new Person();
+        firstName = txtusername.getText();
+        lastName = txtpwd.getText();
+        pessoa.setFirstName(firstName);
+        pessoa.setLastName(lastName);
 
-        try {
-            String firstName=txtusername.getText();;
-             String lastName=txtpwd.getText();
+        if (firstName.equalsIgnoreCase("Admin") && lastName.equalsIgnoreCase("Admin")) {
+            //JOptionPane.showMessageDialog(null, "Utilizador valido");
 
-            if (isFieldValid()) {
-                
-                String tal="'"+firstName+"'";
-                JOptionPane.showMessageDialog(null,tal);
-                pessoa = personService.getPersonByName(tal);
-                
+            try {
 
-                if ((pessoa.getFirstName().equals(firstName)) && (pessoa.getLastName().equals(lastName))) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("form.fxml"));
+                Parent root = loader.load();
 
-                    if (pessoa.getFirstName().equalsIgnoreCase("Admin")) {
-                        //JOptionPane.showMessageDialog(null, "Utilizador valido");
-                        AnchorPane a;
-                        try {
-                            a = (AnchorPane) FXMLLoader.load(getClass().getResource("form.fxml"));
-                            Scene sc = new Scene(a);
-                            Stage st = new Stage();
-                            st.setScene(sc);
-                            st.show();
+                FormController frmcontroller = loader.getController();
+                frmcontroller.setMain();
 
-                        } catch (IOException ex) {
+                Stage st = new Stage();
+                st.setScene(new Scene(root));
+                stagio=st;
+                stagio.show();
+                Main.stg.close();
+                stagio.setAlwaysOnTop(true);
 
-                            ex.printStackTrace();
-                        }
+            } catch (IOException ex) {
 
-                    } else {
-                        AnchorPane a;
+                ex.printStackTrace();
+            }
+        } else {
 
-                        try {
-                            a = (AnchorPane) FXMLLoader.load(getClass().getResource("form.fxml"));
-                            Scene sc = new Scene(a);
-                            Stage st = new Stage();
-                            st.setScene(sc);
-                            st.show();
+            try {
 
-                        } catch (IOException ex) {
+                personService = Main.getPersonService();
+                Person newpessoa = personService.getPersonByName(pessoa);
 
-                            ex.printStackTrace();
-                        }
+                if (newpessoa != null && newpessoa.getFirstName().equals(firstName) && newpessoa.getLastName().equals(lastName)) {
 
+                    pessoalogado=pessoaLogado(newpessoa.getId());//para saber que utilizador esta no sistema
+                    
+                    try {
+
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("ChatForm.fxml"));
+                        Parent root = loader.load();
+                        
+                        ChatFormController cfc=loader.getController();
+                        cfc.setMain();
+
+                        Stage st = new Stage();
+                        st.setScene(new Scene(root));
+                        stagio=st;
+                        stagio.show();
+                        Main.stg.close();
+                        stagio.setAlwaysOnTop(true);
+
+                    } catch (IOException ex) {
+
+                        ex.printStackTrace();
                     }
 
                 } else {
 
-                    String errorMessage = "Clique em Criar uma conta\n Para poder registar-se!";
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.initModality(Modality.APPLICATION_MODAL);
-                    alert.setTitle("Utilizador Inexistente!");
-                    alert.setHeaderText("Por favor crie uma Conta!");
-                    alert.setContentText(errorMessage);
-                    alert.showAndWait();
+                    JOptionPane.showMessageDialog(null, "Verefice se possui uma conta.\nVerefice seus dados\nTente novamente ");
 
-                    clearField();
                 }
 
-            } else {
-                String errorMessage = "Preencha todos os campos!";
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.initModality(Modality.APPLICATION_MODAL);
-                    alert.setTitle("Utilizador Inexistente!");
-                    alert.setHeaderText("Por favor crie uma Conta!");
-                    alert.setContentText(errorMessage);
-                    alert.showAndWait();
+            } catch (RemoteException ex) {
 
-                    clearField();
-                
+                ex.printStackTrace();
             }
 
+        }
+
+    }
+
+    private Person pessoaLogado(Long iduserlogado) {
+
+        try {
+
+           Person xpessoa = personService.getPersonById(iduserlogado);
+           
+             return xpessoa;
+            
         } catch (RemoteException ex) {
 
             ex.printStackTrace();
+              return null;
         }
 
     }
@@ -182,7 +241,7 @@ public class LoginFormController implements Initializable {
             errorMessage += "Nome de utilizador Invalido!\n";
         }
 
-        if (txtpwd.getText() == null) {
+        if (txtpwd.getText().isEmpty() || txtpwd.getText() == null) {
             errorMessage += "Palavra-passe Invalido!\n";
         }
 
@@ -193,13 +252,18 @@ public class LoginFormController implements Initializable {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initModality(Modality.APPLICATION_MODAL);
-            alert.setTitle("Invalid Input");
-            alert.setHeaderText("Please correct those fieds");
+            alert.setTitle("Preencha todos os campos");
+            alert.setHeaderText("Não possuí uma conta?\n Registe-se!");
             alert.setContentText(errorMessage);
             alert.showAndWait();
 
             return false;
         }
     }
+    
+    public static Person getPessoalogado() {
+        return pessoalogado;
+    }
+
 
 }

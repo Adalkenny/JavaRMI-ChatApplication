@@ -1,6 +1,7 @@
 
 package com.dt.project.javafx.rmi.client;
 
+import com.dt.projet.javafx.rmi.api.service.MensagemService;
 import com.dt.projet.javafx.rmi.api.service.PersonService;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -18,33 +19,42 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
     
-    private PersonService personService;
+    public static PersonService personService;
+    public static MensagemService mensagemService;
+    public static Stage stg;
 
     @Override
     public void start(Stage stage) throws Exception {
         
-       
 
-        Registry registry = LocateRegistry.getRegistry("10.74.34.81", 6789); 
+        Registry registry = LocateRegistry.getRegistry("127.0.0.1", 6789); 
         personService = (PersonService) registry.lookup("service");
-       
+        /////////////////////////////////////////////////////////////////////////
+        Registry registrym = LocateRegistry.getRegistry("127.0.0.1", 6889); 
+        mensagemService = (MensagemService) registrym.lookup("mensagem");
+        ////////////////////////////////////////////////////////////////////////////
         FXMLLoader loader = new FXMLLoader(getClass().getResource("loginForm.fxml"));
         Parent root = loader.load();
         
-        //FormController controller = loader.getController();
-        //controller.setMain(this);
+        /*LoginFormController controller = loader.getController();
+        controller.setMain(this);*/
         
-        stage.setScene(new Scene(root));
-        stage.setTitle("Database RMI");
-        
-        stage.show();
+        stg=stage;
+        stg.setScene(new Scene(root));
+        stg.setTitle("Database RMI");
+        stg.show();
         
     }
     
-    public PersonService getPersonService(){
+    public static PersonService getPersonService(){
         return personService;
         
     }
+
+    public static MensagemService getMensagemService() {
+        return mensagemService;
+    }
+    
     
     public static void main(String[] args) {
         launch(args);

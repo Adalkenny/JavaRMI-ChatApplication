@@ -9,8 +9,8 @@
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
     <jar href="lib/mysql-connector-java-8.0.15.jar" size="2134893" download="eager" />
-    <jar href="lib/rmi-database-api.jar" size="5833" download="eager" />
-    <jar href="rmi-database-sever.jar" size="6718" download="eager" />
+    <jar href="lib/rmi-database-api.jar" size="11497" download="eager" />
+    <jar href="rmi-database-sever.jar" size="10705" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="com.dt.project.javafx.rmi.server.Main"  name="rmi-database-sever" />
   <update check="always"/>
